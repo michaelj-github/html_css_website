@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>HTML & CSS</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="page2.html">Form</a></li>
+            <li><a href="page3.html">Links</a></li>
+            <li><a href="page4.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Contact Form</h1>
+        <form id="contactForm">
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required><br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required><br>
+
+                <label for="newsletter">Subscribe to our newsletter:</label>
+                <input type="checkbox" id="newsletter" name="newsletter"><br>
+
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments"></textarea><br>
+
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event){
+            event.preventDefault();
+
+            var formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                newsletter: document.getElementById('newsletter').checked,
+                comments: document.getElementById('comments').value
+            };
+
+            var displayWindow = window.open('', '_blank', 'width=400,height=400');
+            displayWindow.document.write("<h1>Thank's for submitting your information!</h1>");
+            displayWindow.document.write('<p>First Name: ' + formData.firstName + '</p>');
+            displayWindow.document.write('<p>Last Name: ' + formData.lastName + '</p>');
+            displayWindow.document.write('<p>Subscribed to Newsletter: ' + (formData.newsletter ? 'Yes' : 'No') + '</p>');
+            displayWindow.document.write('<p>Comments: ' + formData.comments + '</p>');
+            displayWindow.document.write('<button onclick="window.close()">Close</button>');
+        });
+    </script>
+
+</body>
+</html>
